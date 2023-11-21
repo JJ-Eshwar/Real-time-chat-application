@@ -13,13 +13,19 @@
       bottom: 0;
       left: 0;
       right: 5rem;
-      border: none;
+      border:  1px solid #918d8d;
       padding: 1rem;
       flex-grow: 1;
       border-radius: 2rem;
       margin: 0.25rem;
+      background: rgba(0, 0, 0, 0.15);
+      
     }
-
+    #messages{
+     position: relative;
+     padding-bottom: 16vh;
+     
+    }
 
     #sendBtn {
       position: fixed;
@@ -36,12 +42,14 @@
       color: #fff;
 
     }
+
+
   </style>
 </head>
 
 <body>
   <input type="text" id="message" placeholder="Enter Message" />
-  <button id="sendBtn">Send</button>
+  <button id="sendBtn" type="submit">Send</button>
 
   <div id="messages"></div>
 
@@ -63,6 +71,8 @@
       console.log(message);
       socket.emit("user-message", message);
     });
+
+    
   </script>
 </body>
 
