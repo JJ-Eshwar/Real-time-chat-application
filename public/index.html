@@ -7,51 +7,71 @@
   <title>Socket.io chat</title>
 
   <style>
+    .container {
+
+      border: 1px solid black;
+      min-height: 32.5rem;
+      max-height: 44vh;
+      margin: 1rem;
+      overflow: scroll;
+      
+
+
+    }
+
+
+
     #message {
       position: fixed;
       display: flex;
       bottom: 0;
       left: 0;
       right: 5rem;
-      border:  1px solid #918d8d;
+      border: 1px solid #918d8d;
       padding: 1rem;
       flex-grow: 1;
       border-radius: 2rem;
       margin: 0.25rem;
       background: rgba(0, 0, 0, 0.15);
-      
+    
+
+
     }
-    #messages{
-     position: relative;
-     padding-bottom: 16vh;
-     
+
+    #messages {
+
+      position: relative;
+      z-index: -1;
+      
+
     }
 
     #sendBtn {
       position: fixed;
-      /* display:flex; */
+      display: table-column;
       bottom: 0;
-      /* left: 0; */
       right: 0;
       background: #333;
       border: none;
       padding: 1rem;
       margin: 0.25rem;
       border-radius: 3px;
-      /* outline: none; */
       color: #fff;
-
+      z-index: 0;
     }
-
-
   </style>
 </head>
 
 <body>
-  <input type="text" id="message" placeholder="Enter Message" />
-  <button id="sendBtn" type="submit">Send</button>
+  <form action="" method="post">
+    <div class="container">
+      <input type="text" id="message" placeholder="Enter Message" />
+      <div id="messages">
+      </div>
+      <button id="sendBtn" type="submit">Send</button>
+    </div>
+  </form>
 
-  <div id="messages"></div>
 
   <script src="/socket.io/socket.io.js"></script>
   <script>
@@ -59,6 +79,11 @@
     const sendBtn = document.getElementById("sendBtn");
     const messageInput = document.getElementById("message");
     const allMessages = document.getElementById("messages");
+    const messages = document.getElementById('messages');
+
+
+
+
 
     socket.on("message", (message) => {
       const p = document.createElement("p");
@@ -68,14 +93,13 @@
 
     sendBtn.addEventListener("click", (e) => {
       const message = messageInput.value;
-      console.log(message);
-      socket.emit("user-message", message);
+      console.log( message);
+      socket.emit("user-message",message);
     });
 
-    
+
+
   </script>
 </body>
 
 </html>
-
-
